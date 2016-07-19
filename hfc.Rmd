@@ -1,0 +1,47 @@
+---
+title: "Highway Functional Classification - Importance Weight"
+author: "Jamshid Sodikov"
+date: "July 19, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Analytical Hierarchy Process in R
+
+Four parameters such as Speed, Safety, Environment and Riding Quality were used to assign
+importance weight to each highway functional classification namely, arterial, collector and local.     
+
+First we need to load libraries:
+```{r}
+library(ahp)
+library(data.tree)
+```
+
+Then we load input file hfc.ahp and look to the file:
+```{r}
+ahpFile <- system.file("extdata", "hfc.ahp", package="ahp")
+cat(readChar(ahpFile, file.info(ahpFile)$size))
+```
+Next is to calculate priorities (eigenvalues) and visualize our data
+```{r}
+hfcAhp <- Load(ahpFile)
+Calculate(hfcAhp)
+Visualize(hfcAhp)
+```
+And finally is to present resuls in table
+```{r}
+AnalyzeTable(hfcAhp)
+```
+
+
+
+
+P.S. Analysis were done in RStudio, Version 0.99.902 (R version 3.3.0). OS - MAC  
+
+
+
+
+
