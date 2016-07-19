@@ -1,3 +1,1 @@
-This is R code for assigning importance weights to a proposed Highway Functional Classification. It's a part of paper "Highway Functional Classification in CIS countries". 
-There are arterial, collector and local roads functional classification. For each class four parameters such as speed, safety, environment and ride quality
-were used to assign weights. See for details md and html files      
+This is R code for assigning importance weights to a proposed Highway Functional Classification. It's a part of paper "Highway Functional Classification in CIS countries". There are arterial, collector and local roads functional classification. For each class four parameters such as speed, safety, environment and ride quality were used to assign weights. See for details md and html files.      
