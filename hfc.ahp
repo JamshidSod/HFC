@@ -1,0 +1,71 @@
+Version: 2.0
+Alternatives: &alternatives
+# Here we assign speed (max-120 kmph, min-60 kmph), safety(max - 10, min-0),
+# Environment(max-10, min-0), Riding Quality (max-100, min-0).
+  Arterial:
+    Speed: 120
+    Safety: 10
+    Environment: 6
+    Riding Quality: 90
+  Collector:
+    Speed: 80
+    Safety: 6
+    Environment: 8
+    Riding Quality: 70
+  Local:
+    Speed: 60
+    Safety: 4
+    Environment: 10
+    Riding Quality: 50
+#
+# End of Alternatives Section
+#####################################
+# Goal Section
+#
+Goal:
+# A Goal HAS preferences (within-level comparison) and HAS Children (items in level)
+  name: Assigning Importance Weight
+  preferences:
+    pairwise:
+      # preferences are defined pairwise
+      # 1 means: A is equal to B
+      # 9 means: A is highly preferrable to B
+      # 1/9 means: B is highly preferrable to A
+      - [Speed, Safety, 1/2]
+      - [Speed, Environment, 5]
+      - [Speed, Riding Quality, 4]
+      - [Safety, Environment, 5]
+      - [Safety, Riding Quality, 4]
+      - [Environment, Riding Quality, 1/4]
+  children: 
+    Speed:
+      preferences:
+        pairwise:
+          - [Arterial, Collector, 3]
+          - [Arterial, Local, 6]
+          - [Collector, Local, 3]
+      children: *alternatives 
+    Safety:
+      preferences:
+        pairwise:
+          - [Arterial, Collector, 2]
+          - [Arterial, Local, 4]
+          - [Collector, Local, 2]
+      children: *alternatives
+    Environment:
+      preferences:
+        pairwise:
+          - [Arterial, Collector, 1/3]
+          - [Arterial, Local, 1/6]
+          - [Collector, Local, 1/2]
+      children: *alternatives
+    Riding Quality:
+      preferences:
+        pairwise:
+          - [Arterial, Collector, 2]
+          - [Arterial, Local, 5]
+          - [Collector, Local, 2]
+      children: *alternatives
+#
+# End of Goal Section
+#####################################
